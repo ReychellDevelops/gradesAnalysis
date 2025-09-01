@@ -24,8 +24,30 @@ def calcularPromedioGeneral(df):
 #funcion contarAprobados que calcula el total de estudiantes con definitiva > 3.0
 def contarAprobados(df, columna="definitiva"):
         return (df[columna] > 3.0).sum()
-    
 
+#funcion contarAprobados que calcula el total de estudiantes con definitiva < 3.0
+def contarReprobados(df, columna="definitiva"):
+        return (df[columna] < 3.0).sum()
+
+def mejoresPromedios(df):
+    columnaMejorEstudiante =["codigo","nombre","definitiva"]
+    df_filtrado = df[columnaMejorEstudiante].sort_values(by = "definitiva",ascending = False).head(5)
+    return df_filtrado
+
+def peoresPromedios(df):
+    columnaPeorEstudiante =["codigo","nombre","definitiva"]
+    df_filtrado = df[columnaPeorEstudiante].sort_values(by = "definitiva",ascending = True).head(5)
+    return df_filtrado
+
+def notaMaxima(df):
+    columnaMejorNota =["codigo","nombre","definitiva"]
+    df_filtrado = df[columnaMejorNota].sort_values(by = "definitiva",ascending = False).head(1)
+    return df_filtrado
+
+def notaMinima(df):
+    columnaPeorNota =["codigo","nombre","definitiva"]
+    df_filtrado = df[columnaPeorNota].sort_values(by = "definitiva",ascending = True).head(1)
+    return df_filtrado
 #definicion de funcion principal main
 def main():
     """
@@ -68,6 +90,40 @@ def main():
         #contarAprobados
         aprobados = contarAprobados(df)
         print(f"\nEl total de aprobados es: {aprobados}")
+
+        print("----------------------------ESTUDIANTES REPROBADOS---------------------------")
+        #contarReprobados
+        reprobados = contarReprobados(df)
+        print(f"\nEl total de reprobados es: {reprobados}")
+
+        #mejoresPromedios
+        print("----------------------------MEJORES 5 PROMEDIOS---------------------------")
+        
+        mejorPromedio = mejoresPromedios(df)
+        print(f"\nLos 5 mejores promedios son:\n {mejorPromedio}")
+
+         #peoresPromedios
+        print("----------------------------PEORES 5 PROMEDIOS---------------------------")
+        
+        peorPromedio = peoresPromedios(df)
+        print(f"\nLos 5 peores promedios son:\n {peorPromedio}")
+
+        #notaMaxima
+        print("----------------------------MEJOR ESTUDIANTE---------------------------")
+        
+        notaMasAlta = notaMaxima(df)
+        print(f"\nMejor estudiante:\n {notaMasAlta}")
+
+        #notaMinima
+        print("----------------------------PEOR ESTUDIANTE---------------------------")
+        
+        notaMasBaja = notaMinima(df)
+        print(f"\nMejor estudiante:\n { notaMasBaja}")
+
+
+       
+
+
 
     except Exception as e: #si hay algun error al leer el archivo, la excepcion se guarda en la variable e y la muestra en el print
         print(f"❌ Error al leer el archivo CSV: {e}")
