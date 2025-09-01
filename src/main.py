@@ -31,9 +31,10 @@ def main():
     try: #intentaejecutar el bloque de codigo, si todo sale bien muestra la tabla con los datos
         df = pd.read_csv(data_path, sep=";")
         print("\n📊 Datos cargados correctamente:\n")
-        print(df)
+        print(df) #mostrar tabla
 
         #llamamos la funcion contarEstudiantes asignandole su retorno a la variable total
+        #Contar estudiantes
         total = contarEstudiantes(df) #le enviamos el argmento df a la funcion para que lo pueda evaluar
         print(f"\n👩‍🎓👨‍🎓 Número de estudiantes en el curso: {total}")
 
