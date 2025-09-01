@@ -1,36 +1,106 @@
-# 📊 Grades Analysis  
+# 📘 Proyecto de Gestión de Notas
 
-Un proyecto en **Python** para organizar, analizar y visualizar calificaciones de estudiantes.  
-Incluye carga de datos desde archivos CSV, generación de estadísticas y exportación de resultados en diferentes formatos.  
+Este es un proyecto en **Python** que permite analizar y gestionar las notas de un curso a partir de un archivo CSV.
+
+---
+
+## 🚀 Cómo ejecutar el proyecto
+
+1. Clonar este repositorio:
+
+   ```bash
+   git clone https://github.com/TU_USUARIO/gradesAnalysis.git
+   cd gradesAnalysis
+   ```
+
+2. Crear y activar un entorno virtual:
+
+   ```bash
+   python -m venv venv
+   # En Windows PowerShell
+   venv\Scripts\Activate.ps1
+   # En Linux/Mac
+   source venv/bin/activate
+   ```
+
+3. Instalar dependencias:
+
+   ```bash
+   pip install pandas
+   ```
+
+4. Ejecutar el programa principal:
+
+   ```bash
+   python src/main.py
+   ```
 
 ---
 
 ## 📂 Estructura del proyecto
 
-```bash
+```
 gradesAnalysis/
-│── data/             # Archivos CSV de entrada
-│── outputs/          # Resultados generados
-│   ├── dataTables_html/  # Tablas interactivas exportadas
-│   ├── graphics/         # Gráficas y visualizaciones
-│   └── reports/          # Reportes en PDF/Excel/otros
-│── src/              # Código fuente en Python
-│   └── main.py       # Script principal
-│── web/              # Carpeta pensada para versión web/dashboards
-│── .gitignore        # Archivos/carpetas ignoradas por git
-│── README.md         # Documentación del proyecto
-│── requirements.txt  # Librerías necesarias
-
+│── data/
+│   └── notes.csv      # Archivo CSV con las notas
+│── src/
+│   └── main.py        # Programa principal
+│── venv/              # Entorno virtual (ignorar en Git)
+│── README.md          # Este archivo
+```
 
 ---
 
-## 🚀 Estado actual
+## 👥 Colaboración en equipo con Git
 
-✔️ Estructura inicial del proyecto creada y organizada.  
-❌ Aún no hay datos cargados ni análisis implementados.  
+### 🔹 Crear tu propia rama
+
+Cada integrante debe crear una rama para trabajar en su parte:
+
+```bash
+git checkout -b feature/tu-funcion
+```
+
+Ejemplo:
+
+```bash
+git checkout -b feature/contar_aprobados
+```
 
 ---
 
-## 👩‍💻 Autores
+### 🔹 Guardar cambios en tu rama
 
-Creado con 💙 por **Reychell Veloza, Juan Aldana, Erick Rodriguez**  
+```bash
+git add .
+git commit -m "Implementé la función contar_aprobados"
+git push origin feature/contar_aprobados
+```
+
+---
+
+### 🔹 Hacer un Pull Request
+
+1. Entra a GitHub.
+2. Te aparecerá un botón para **abrir un Pull Request (PR)**.
+3. Describe qué hiciste y pide revisión.
+
+---
+
+## 📌 Funciones por desarrollar
+
+Cada integrante debe implementar una función en `main.py` (o en un nuevo archivo dentro de `src/` si prefieren modularizar):
+
+* [x] **contarEstudiantes(df)** → Total de estudiantes (hecho ✅).
+* [ ] **contarAprobados(df)** → Número de estudiantes que aprobaron.
+* [ ] **contarReprobados(df)** → Número de estudiantes que perdieron.
+* [ ] **calcularPromedio(df)** → Promedio general del curso.
+* [ ] **notaMaximaMinima(df)** → Nota más alta y más baja.
+
+---
+
+## 📧 Equipo
+
+* Juan Aldana
+* Erick Rodriguez
+* Reychell Veloza
