@@ -4,6 +4,7 @@
 
 import os #libreria que permite trabajar con archivos del sistema operativo
 import pandas as pd #libreria para el analisis de datos, en este caso para el analisis de un csv
+import matplotlib.pyplot as plt
 
 #definicion de funcion para realizar conteo del total de estudiantes
 def contarEstudiantes(df):
@@ -23,31 +24,71 @@ def calcularPromedioGeneral(df):
 
 #funcion contarAprobados que calcula el total de estudiantes con definitiva > 3.0
 def contarAprobados(df, columna="definitiva"):
-        return (df[columna] > 3.0).sum()
+    return (df[columna] > 3.0).sum() #si el valor de la columna dentro del archivo es >3.0 se va sumando y retorna dicha suma
 
 #funcion contarAprobados que calcula el total de estudiantes con definitiva < 3.0
 def contarReprobados(df, columna="definitiva"):
-        return (df[columna] < 3.0).sum()
+    return (df[columna] < 3.0).sum() #si el valor de la columna dentro del archivo es <3.0 se va sumando y retorna dicha suma
 
+#funcion para ordenar descendentemente la tbla en los valores ["codigo","nombre","definitiva"] y mostrar los 5 mejores
 def mejoresPromedios(df):
-    columnaMejorEstudiante =["codigo","nombre","definitiva"]
-    df_filtrado = df[columnaMejorEstudiante].sort_values(by = "definitiva",ascending = False).head(5)
+    columnaMejorEstudiante =["codigo","nombre","definitiva"] #indicamos nombres de columnas a evaluar
+    df_filtrado = df[columnaMejorEstudiante].sort_values(by = "definitiva",ascending = False).head(5) #ordenamos descendentemente y sleccionamos 5 primeras
     return df_filtrado
 
+#funcion para ordenar ascendentemente la tbla en los valores ["codigo","nombre","definitiva"] y mostrar los 5 peores
 def peoresPromedios(df):
-    columnaPeorEstudiante =["codigo","nombre","definitiva"]
-    df_filtrado = df[columnaPeorEstudiante].sort_values(by = "definitiva",ascending = True).head(5)
+    columnaPeorEstudiante =["codigo","nombre","definitiva"] 
+    df_filtrado = df[columnaPeorEstudiante].sort_values(by = "definitiva",ascending = True).head(5) #ordenamos ascendentemente y sleccionamos 5 primeras
     return df_filtrado
 
+#funcion para mostrar nota maxima
 def notaMaxima(df):
     columnaMejorNota =["codigo","nombre","definitiva"]
-    df_filtrado = df[columnaMejorNota].sort_values(by = "definitiva",ascending = False).head(1)
+    df_filtrado = df[columnaMejorNota].sort_values(by = "definitiva",ascending = False).head(1) #se ordena la lista desecendentemente y se muestra el primero
     return df_filtrado
 
+#funcion par mostrar nota minima
 def notaMinima(df):
     columnaPeorNota =["codigo","nombre","definitiva"]
-    df_filtrado = df[columnaPeorNota].sort_values(by = "definitiva",ascending = True).head(1)
+    df_filtrado = df[columnaPeorNota].sort_values(by = "definitiva",ascending = True).head(1) #se ordena la lista asecendentemente y se muestra el primero
     return df_filtrado
+
+def graficasPorcentaje(aprobados, reprobados):
+    cifrasCartera = [aprobados, reprobados]
+    colores = ['#238E23', 'red']
+    nombresCartera = ['Aprobaron', 'Perdieron'] 
+    desfase = (0.1, 0.1)
+
+    # Configuración del gráfico
+    plt.figure(figsize=(6, 6))
+    plt.title('Porcentaje de estudiantes que aprobaron y perdieron', fontsize=14)
+    plt.axis('equal')  # Hace que el pastel sea redondo
+
+    # Datos para el pie chart
+    # nombrescartera = ["Aprobados", "Reprobados"]
+    # cifrascartera = [aprobados, reprobados]
+    # colores = ["#4CAF50", "#F44336"]
+    # desfase = [0.05, 0]  # separa un poco la primera porción
+
+    # Crear gráfico de pastel
+    _, _, textos = plt.pie(
+        cifrasCartera,
+        labels=nombresCartera,
+        autopct="%0.1f%%",
+        colors=colores,
+        explode=desfase
+    )
+
+    # Cambiar color de los porcentajes a blanco
+    for tex in textos:
+        tex.set_color('white')
+
+    # Mostrar gráfico
+    return plt.show()
+
+
+
 #definicion de funcion principal main
 def main():
     """
@@ -112,18 +153,17 @@ def main():
         print("----------------------------MEJOR ESTUDIANTE---------------------------")
         
         notaMasAlta = notaMaxima(df)
-        print(f"\nMejor estudiante:\n {notaMasAlta}")
+        print(f"\nMejor estudiante:\n {notaMasAlta}\n")
 
         #notaMinima
         print("----------------------------PEOR ESTUDIANTE---------------------------")
         
         notaMasBaja = notaMinima(df)
-        print(f"\nMejor estudiante:\n { notaMasBaja}")
+        print(f"\nMejor estudiante:\n { notaMasBaja}\n")
 
-
-       
-
-
+        #graficas 
+        print("----------------------------GRAFICA PORCENTAJE APROBADOS---------------------------\n")
+        print(graficasPorcentaje(aprobados, reprobados))
 
     except Exception as e: #si hay algun error al leer el archivo, la excepcion se guarda en la variable e y la muestra en el print
         print(f"❌ Error al leer el archivo CSV: {e}")

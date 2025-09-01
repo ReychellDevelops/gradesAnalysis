@@ -97,10 +97,10 @@ Cada integrante debe implementar una función en `main.py` (o en un nuevo archiv
 * [✅] **contarAprobados(df)** → Número de estudiantes que aprobaron. (hecho ✅)
 * [✅] **contarReprobados(df)** → Número de estudiantes que perdieron. (hecho ✅)
 * [✅] **mejoresPromedios(df)** → Mejores 5 promedios del curso. (hecho ✅)
-* [✅ ] **peoresPromedios(df)** → Peores 5 promedios del curso. (hecho ✅)
-* [✅ ] **notaMaxima(df)** → Nota más alta. (hecho ✅)
-* [✅ ] **notaMinima(df)** → Nota más baja. (hecho ✅)
-* [ ] **graficasPorcentajeAprobados** → Grafica el porcentaje de estudiantes que aprobaron y perdieron
+* [✅] **peoresPromedios(df)** → Peores 5 promedios del curso. (hecho ✅)
+* [✅] **notaMaxima(df)** → Nota más alta. (hecho ✅)
+* [✅] **notaMinima(df)** → Nota más baja. (hecho ✅)
+* [✅] **graficasPorcentaje** → Grafica el porcentaje de estudiantes que aprobaron y perdieron(hecho ✅)
 
 ---
 
