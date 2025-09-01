@@ -10,6 +10,13 @@ def contarEstudiantes(df):
     #retorna el numero total de estudiantes del dataframe (tabla)
     return len(df)
 
+#se define la funcion como calcularPromedio para realizar el calculo
+def calcularPromedio(df):
+    columnaNotas = ["parcial","quices","investigacion","taller","trabajo"] #se asigna el nombre de las columnas para cada valor
+    df["definitiva"] = df[columnaNotas].mean(axis=1)  #se agrega la columna definitiva para agregarle el promedio de cada fila
+    return df
+   
+
 #definicion de funcion principal main
 def main():
     """
@@ -36,10 +43,15 @@ def main():
         #llamamos la funcion contarEstudiantes asignandole su retorno a la variable total
         #Contar estudiantes
         total = contarEstudiantes(df) #le enviamos el argmento df a la funcion para que lo pueda evaluar
-        print(f"\n👩‍🎓👨‍🎓 Número de estudiantes en el curso: {total}")
+        print(f"\n👩‍🎓👨‍🎓 Número de estudiantes en el curso: {total}\n\n")
 
+        print("--------------------------PROMEDIO DE LOS ESTUDIANTES-------------------------\n")
+        #calcularPromedio
+        promedios = calcularPromedio(df)
+        print(promedios)
     except Exception as e: #si hay algun error al leer el archivo, la excepcion se guarda en la variable e y la muestra en el print
         print(f"❌ Error al leer el archivo CSV: {e}")
 
 if __name__ == "__main__":
     main()
+
