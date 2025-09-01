@@ -15,7 +15,16 @@ def calcularPromedio(df):
     columnaNotas = ["parcial","quices","investigacion","taller","trabajo"] #se asigna el nombre de las columnas para cada valor
     df["definitiva"] = df[columnaNotas].mean(axis=1)  #se agrega la columna definitiva para agregarle el promedio de cada fila
     return df
-   
+
+#se crea funcion calcularPromedioGeneral para calcular el promedio del curso
+def calcularPromedioGeneral(df):
+    promedioGeneral = df["definitiva"].mean(axis=0) 
+    return promedioGeneral
+
+#funcion contarAprobados que calcula el total de estudiantes con definitiva > 3.0
+def contarAprobados(df, columna="definitiva"):
+        return (df[columna] > 3.0).sum()
+    
 
 #definicion de funcion principal main
 def main():
@@ -49,6 +58,17 @@ def main():
         #calcularPromedio
         promedios = calcularPromedio(df)
         print(promedios)
+
+        print("\n\n--------------------------PROMEDIO GENERAL DEL CURSO--------------------------")
+        #calcularPromedioGeneral
+        promedioGeneral = calcularPromedioGeneral(df)
+        print(f"\nEl promedio general del curso es: {promedioGeneral}\n\n")
+
+        print("----------------------------ESTUDIANTES APROBADOS---------------------------")
+        #contarAprobados
+        aprobados = contarAprobados(df)
+        print(f"\nEl total de aprobados es: {aprobados}")
+
     except Exception as e: #si hay algun error al leer el archivo, la excepcion se guarda en la variable e y la muestra en el print
         print(f"❌ Error al leer el archivo CSV: {e}")
 

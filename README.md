@@ -93,8 +93,8 @@ Cada integrante debe implementar una función en `main.py` (o en un nuevo archiv
 
 * [✅] **contarEstudiantes(df)** → Total de estudiantes (hecho ✅).
 * [✅] **calcularPromedio(df)** → Promedios de cada estudiante.(hecho ✅)
-* [ ] **calcularPromedioGeneral(df)** → Promedio general del curso.
-* [ ] **contarAprobados(df)** → Número de estudiantes que aprobaron.
+* [✅] **calcularPromedioGeneral(df)** → Promedio general del curso. (hecho ✅)
+* [✅] **contarAprobados(df)** → Número de estudiantes que aprobaron. (hecho ✅)
 * [ ] **contarReprobados(df)** → Número de estudiantes que perdieron.
 * [ ] **mejoresPromedios(df)** → Mejores 5 promedios del curso.
 * [ ] **peoresPromedios(df)** → Peores 5 promedios del curso.
