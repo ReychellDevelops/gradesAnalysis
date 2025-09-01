@@ -92,7 +92,7 @@ git push origin feature/contar_aprobados
 Cada integrante debe implementar una función en `main.py` (o en un nuevo archivo dentro de `src/` si prefieren modularizar):
 
 * [✅] **contarEstudiantes(df)** → Total de estudiantes (hecho ✅).
-* [ ] **calcularPromedio(df)** → Promedios de cada estudiante.
+* [✅] **calcularPromedio(df)** → Promedios de cada estudiante.(hecho ✅)
 * [ ] **calcularPromedioGeneral(df)** → Promedio general del curso.
 * [ ] **contarAprobados(df)** → Número de estudiantes que aprobaron.
 * [ ] **contarReprobados(df)** → Número de estudiantes que perdieron.
