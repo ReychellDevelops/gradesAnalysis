@@ -23,17 +23,27 @@ def calcularPromedioGeneral(df):
     return promedioGeneral
 
 #funcion contarAprobados que calcula el total de estudiantes con definitiva > 3.0
-def contarAprobados(df, columna="definitiva"):
+def contarAprobados(df, columna="definitiva"): 
     return (df[columna] > 3.0).sum() #si el valor de la columna dentro del archivo es >3.0 se va sumando y retorna dicha suma
+
+def tablaAprobados(df, columna = "definitiva"):
+    columnaMejorEstudiante =["codigo","nombre",columna] #indicamos nombres de columnas a evaluar
+    df_aprobados = df[df[columna] > 3.0][columnaMejorEstudiante]
+    return df_aprobados
 
 #funcion contarAprobados que calcula el total de estudiantes con definitiva < 3.0
 def contarReprobados(df, columna="definitiva"):
     return (df[columna] < 3.0).sum() #si el valor de la columna dentro del archivo es <3.0 se va sumando y retorna dicha suma
 
+def tablaReprobados(df, columna = "definitiva"):
+    columnaPeorEstudiante =["codigo","nombre",columna]
+    df_reprobados = df[df[columna] < 3.0][columnaPeorEstudiante]
+    return df_reprobados
+
 #funcion para ordenar descendentemente la tbla en los valores ["codigo","nombre","definitiva"] y mostrar los 5 mejores
 def mejoresPromedios(df):
     columnaMejorEstudiante =["codigo","nombre","definitiva"] #indicamos nombres de columnas a evaluar
-    df_filtrado = df[columnaMejorEstudiante].sort_values(by = "definitiva",ascending = False).head(5) #ordenamos descendentemente y sleccionamos 5 primeras
+    df_filtrado = df[columnaMejorEstudiante].sort_values(by = "definitiva",ascending = False).head(10) #ordenamos descendentemente y sleccionamos 5 primeras
     return df_filtrado
 
 #funcion para ordenar ascendentemente la tbla en los valores ["codigo","nombre","definitiva"] y mostrar los 5 peores
@@ -99,7 +109,7 @@ def main():
     print("----------- PROYECTO DE GESTIÓN DE NOTAS -----------")
 
     #ruta del archivo csv de manera portable
-    data_path = os.path.join("data", "notes.csv") #path es una sublibreria de os que nos ayuda a indicar bien la ruta segun el sistema operativo y join coloca bien los separadores(/ mac \\ windows)
+    data_path = os.path.join("gradesAnalysis","data", "notes.csv") #path es una sublibreria de os que nos ayuda a indicar bien la ruta segun el sistema operativo y join coloca bien los separadores(/ mac \\ windows)
 
     #verificamos si el archivo existe
     if not os.path.exists(data_path): #el .exists nos permite verificar si un archivo existe
@@ -130,18 +140,22 @@ def main():
         print("----------------------------ESTUDIANTES APROBADOS---------------------------")
         #contarAprobados
         aprobados = contarAprobados(df)
+        tablaA = tablaAprobados(df)
         print(f"\nEl total de aprobados es: {aprobados}")
+        print(f"\nLos aprobados son: \n{tablaA}")
 
         print("----------------------------ESTUDIANTES REPROBADOS---------------------------")
         #contarReprobados
         reprobados = contarReprobados(df)
+        tablaR = tablaReprobados(df)
         print(f"\nEl total de reprobados es: {reprobados}")
+        print(f"\nLos reprobados son: \n{tablaR}")
 
         #mejoresPromedios
-        print("----------------------------MEJORES 5 PROMEDIOS---------------------------")
+        print("----------------------------MEJORES 10 PROMEDIOS---------------------------")
         
         mejorPromedio = mejoresPromedios(df)
-        print(f"\nLos 5 mejores promedios son:\n {mejorPromedio}")
+        print(f"\nLos 10 mejores promedios son:\n {mejorPromedio}")
 
          #peoresPromedios
         print("----------------------------PEORES 5 PROMEDIOS---------------------------")
